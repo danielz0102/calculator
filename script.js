@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     let firstNumber = null, secondNumber = null, operator = null
+
 })
 
 function add(a, b) {
