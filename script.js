@@ -1,10 +1,10 @@
 let firstNumber = '', secondNumber = '', operator = '', displayValue = ''
 const display = document.querySelector('.display')
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const numbers = document.querySelectorAll('.btn-show')
     const operators = document.querySelectorAll('.operator')
+    const equalBtn = document.querySelector('#equals')
 
     numbers.forEach(btn => {
         btn.addEventListener('click', e => {
@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     operators.forEach(btn => {
         btn.addEventListener('click', updateOperator)
+    })
+
+    equalBtn.addEventListener('click', () => {
+        operate(+firstNumber, +secondNumber, operator)
     })
 
 })
@@ -29,18 +33,14 @@ function updateDisplay(event) {
 
 function updateNumbers() {
     operator === '' ? firstNumber = displayValue : secondNumber = displayValue
-    console.log(firstNumber)
-    console.log(secondNumber)
 }
 
 function updateOperator(event) {
-    if (firstNumber !== '' && secondNumber !== '' && operator !== '') {
-        console.log('do something')
+    if (operator !== '') {
+
     } else {
         operator = event.target.textContent
     }
-
-    console.log(operator)
 }
 
 function add(a, b) {
@@ -68,5 +68,5 @@ function operate(firstNumber, secondNumber, operator) {
     }
 
     const selectedFunc = operations[operator]
-    selectedFunc(firstNumber, secondNumber)
+    display.textContent = selectedFunc(firstNumber, secondNumber)
 }
