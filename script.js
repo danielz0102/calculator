@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const numbers = document.querySelectorAll('.btn-show')
     const operators = document.querySelectorAll('.operator')
     const equalBtn = document.querySelector('#equals')
+    const clearBtn = document.querySelector('#clear')
 
     numbers.forEach(btn => {
         btn.addEventListener('click', e => {
@@ -19,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     equalBtn.addEventListener('click', () => {
         operate(+firstNumber, +secondNumber, operator)
+    })
+
+    clearBtn.addEventListener('click', () => {
+        display.textContent = ''
     })
 
 })
