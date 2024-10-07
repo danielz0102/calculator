@@ -1,4 +1,5 @@
 let firstNumber = '', secondNumber = '', operator = '', displayValue = ''
+let resultShown = false
 const display = document.querySelector('.display')
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,16 +20,23 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     equalBtn.addEventListener('click', () => {
-        operate(+firstNumber, +secondNumber, operator)
+        if (firstNumber !== '' && secondNumber !== '' && operator !== '') {
+            operate()
+        }
     })
 
     clearBtn.addEventListener('click', () => {
-        display.textContent = ''
+        clearData()
     })
 
 })
 
 function updateDisplay(event) {
+    if (resultShown === true) {
+        clearData()
+        resultShown = false
+    }
+
     if (operator !== '' && secondNumber === '') {
         display.textContent = ''
     }
@@ -38,14 +46,22 @@ function updateDisplay(event) {
 
 function updateNumbers() {
     operator === '' ? firstNumber = displayValue : secondNumber = displayValue
+    console.log('primero: ' + firstNumber)
+    console.log('segundo: ' + secondNumber)
 }
 
 function updateOperator(event) {
-    if (operator !== '') {
+    const operatorSelected = event.target.textContent
 
-    } else {
-        operator = event.target.textContent
-    }
+    operator = operatorSelected
+    console.log('operador: ' + operator)
+}
+
+function clearData() {
+    display.textContent = ''
+    firstNumber = ''
+    secondNumber = ''
+    operator = ''
 }
 
 function add(a, b) {
@@ -64,7 +80,7 @@ function divide(a, b) {
     return a / b
 }
 
-function operate(firstNumber, secondNumber, operator) {
+function operate() {
     const operations = {
         '+': add,
         '-': subtract,
@@ -73,5 +89,6 @@ function operate(firstNumber, secondNumber, operator) {
     }
 
     const selectedFunc = operations[operator]
-    display.textContent = selectedFunc(firstNumber, secondNumber)
+    display.textContent = selectedFunc(+firstNumber, +secondNumber)
+    resultShown = true
 }
