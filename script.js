@@ -53,6 +53,12 @@ function updateNumbers() {
 function updateOperator(event) {
     const operatorSelected = event.target.textContent
 
+    if (resultShown === true) {
+        firstNumber = display.textContent
+        secondNumber = ''
+        resultShown = false
+    }
+
     operator = operatorSelected
     console.log('operador: ' + operator)
 }
