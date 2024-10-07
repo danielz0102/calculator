@@ -1,13 +1,47 @@
-document.addEventListener('DOMContentLoaded', () => {
-    let firstNumber = null, secondNumber = null, operator = null, display = null
-    const displayBtns = document.querySelectorAll('.btn-show')
+let firstNumber = '', secondNumber = '', operator = '', displayValue = ''
+const display = document.querySelector('.display')
 
-    displayBtns.forEach(btn => {
+
+document.addEventListener('DOMContentLoaded', () => {
+    const numbers = document.querySelectorAll('.btn-show')
+    const operators = document.querySelectorAll('.operator')
+
+    numbers.forEach(btn => {
         btn.addEventListener('click', e => {
-            display = updateDisplay(e)
+            displayValue = updateDisplay(e)
+            updateNumbers()
         })
     })
+
+    operators.forEach(btn => {
+        btn.addEventListener('click', updateOperator)
+    })
+
 })
+
+function updateDisplay(event) {
+    if (operator !== '' && secondNumber === '') {
+        display.textContent = ''
+    }
+
+    return display.textContent += event.target.textContent
+}
+
+function updateNumbers() {
+    operator === '' ? firstNumber = displayValue : secondNumber = displayValue
+    console.log(firstNumber)
+    console.log(secondNumber)
+}
+
+function updateOperator(event) {
+    if (firstNumber !== '' && secondNumber !== '' && operator !== '') {
+        console.log('do something')
+    } else {
+        operator = event.target.textContent
+    }
+
+    console.log(operator)
+}
 
 function add(a, b) {
     return a + b
@@ -26,19 +60,13 @@ function divide(a, b) {
 }
 
 function operate(firstNumber, secondNumber, operator) {
-    const functions = {
+    const operations = {
         '+': add,
         '-': subtract,
         'x': multiply,
         '÷': divide,
     }
 
-    const selectedFunc = functions[operator]
+    const selectedFunc = operations[operator]
     selectedFunc(firstNumber, secondNumber)
-}
-
-function updateDisplay(event) {
-    const display = document.querySelector('.display')
-    display.textContent += event.target.textContent
-    return display.textContent
 }
