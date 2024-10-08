@@ -69,8 +69,6 @@ function updateDisplay(event) {
 
 function updateNumbers() {
     operator === '' ? firstNumber = displayValue : secondNumber = displayValue
-    console.log('primero: ' + firstNumber)
-    console.log('segundo: ' + secondNumber)
 }
 
 function updateOperator(event) {
@@ -93,7 +91,6 @@ function updateOperator(event) {
     }
 
     operator = operatorSelected
-    console.log('operador: ' + operator)
 }
 
 function clearData() {

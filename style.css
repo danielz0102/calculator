@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "JetBrains Mono", monospace;
+}
+
+body {
+    height: 100vh;
+    background-color: #e5e7e3;
+    display: grid;
+    place-content: center;
+}
+
+.container {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #5e5e5e;
+    border-radius: 3px;
+}
+
+.display {
+    flex: 1;
+    background-color: #4f994f;
+    border-bottom: 3px solid #5e5e5e;
+    text-align: right;
+    font-size: 2rem;
+    color: #fff;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 0.5rem;
+}
+
+.row {
+    flex: 1;
+    display: flex;
+}
+
+.row button {
+    flex: 1;
+    border: 1px solid #5e5e5e;
+    font-size: 1.25rem;
+}
+
+.row button:hover {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#clear, #equals {
+    flex: 2;
+}
+
+.btn-show {
+    background-color: #afcaf3;
+}
+.btn-show:hover {
+    background-color: #86b1f1;
+}
+
+.btn-operator {
+    background-color: #e9c295;
+}
+.btn-operator:hover {
+    background-color: #ebb97f;
+}
+
+.btn-action {
+    background-color: #e9959c;
+}
+.btn-action:hover {
+    background-color: #eb7a84;
+}
