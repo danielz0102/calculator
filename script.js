@@ -41,6 +41,10 @@ function updateDisplay(event) {
         display.textContent = ''
     }
 
+    if (event.target.textContent === '.' && display.textContent === '') {
+        display.textContent = '0'
+    }
+
     return display.textContent += event.target.textContent
 }
 
