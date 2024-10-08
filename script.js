@@ -124,11 +124,21 @@ function operate() {
 
     const selectedFunc = operations[operator]
     let result = selectedFunc(+firstNumber, +secondNumber)
+
     if (result === Infinity) {
         display.textContent = 'Nice try'
         error = true
     } else {
+        if (result % 1 !== 0) {
+            const decimalPart = result.toString().split('.')[1]
+            
+            if (decimalPart.length > 3) {
+                result = result.toFixed(2)
+            }
+        }
+        
         display.textContent = result
     }
+
     resultShown = true
 }
