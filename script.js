@@ -34,12 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function changeSign(event) {
-    if (display.textContent !== '') {
+    if (display.textContent !== '' && !display.textContent.includes('.')) {
         if (display.textContent.includes('-')) {
             display.textContent = display.textContent.substring(1)
         } else {
             display.textContent = '-' + display.textContent
         }
+        
         displayValue = display.textContent
         updateNumbers()
     }
@@ -55,8 +56,12 @@ function updateDisplay(event) {
         display.textContent = ''
     }
 
-    if (event.target.textContent === '.' && display.textContent === '') {
-        display.textContent = '0'
+    if (event.target.textContent === '.') {
+        if (display.textContent === '') {
+            display.textContent = '0'
+        } else if (display.textContent.includes('.')) {
+            return display.textContent
+        }
     }
 
     return display.textContent += event.target.textContent
@@ -131,7 +136,7 @@ function operate() {
     } else {
         if (result % 1 !== 0) {
             const decimalPart = result.toString().split('.')[1]
-            
+
             if (decimalPart.length > 3) {
                 result = result.toFixed(2)
             }
