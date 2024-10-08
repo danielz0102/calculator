@@ -4,9 +4,10 @@ const display = document.querySelector('.display')
 
 document.addEventListener('DOMContentLoaded', () => {
     const numbers = document.querySelectorAll('.btn-show')
-    const operators = document.querySelectorAll('.operator')
+    const operators = document.querySelectorAll('.btn-operator')
     const equalBtn = document.querySelector('#equals')
     const clearBtn = document.querySelector('#clear')
+    const signBtn = document.querySelector('#sign')
 
     numbers.forEach(btn => {
         btn.addEventListener('click', e => {
@@ -29,7 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
         clearData()
     })
 
+    signBtn.addEventListener('click', changeSign)
 })
+
+function changeSign(event) {
+    if (display.textContent !== '') {
+        if (display.textContent.includes('-')) {
+            display.textContent = display.textContent.substring(1)
+        } else {
+            display.textContent = '-' + display.textContent
+        }
+        displayValue = display.textContent
+        updateNumbers()
+    }
+}
 
 function updateDisplay(event) {
     if (resultShown === true) {
