@@ -50,7 +50,7 @@ body {
 
 .row button:hover {
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s;
 }
 
 #clear, #equals {
@@ -67,8 +67,8 @@ body {
 .btn-operator {
     background-color: #e9c295;
 }
-.btn-operator:hover {
-    background-color: #ebb97f;
+.btn-operator:hover, .btn-operator:focus {
+    background-color: #ecad64;
 }
 
 .btn-action {
