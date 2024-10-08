@@ -78,6 +78,10 @@ function updateOperator(event) {
         operate()
     }
 
+    if (firstNumber === '') {
+        return
+    }
+
     if (resultShown === true) {
         if (error === true) {
             clearData()
