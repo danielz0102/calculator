@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const equalBtn = document.querySelector('#equals')
     const clearBtn = document.querySelector('#clear')
     const signBtn = document.querySelector('#sign')
+    const backspace = document.querySelector('#backspace')
 
     numbers.forEach(btn => {
         btn.addEventListener('click', e => {
@@ -31,9 +32,19 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     signBtn.addEventListener('click', changeSign)
+
+    backspace.addEventListener('click', popDisplay)
 })
 
-function changeSign(event) {
+function popDisplay() {
+    if (display.textContent !== '') {
+        display.textContent = display.textContent.slice(0, -1)
+        displayValue = display.textContent
+        updateNumbers()
+    }
+}
+
+function changeSign() {
     if (display.textContent !== '' && !display.textContent.includes('.')) {
         if (display.textContent.includes('-')) {
             display.textContent = display.textContent.substring(1)
