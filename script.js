@@ -1,5 +1,5 @@
 let firstNumber = '', secondNumber = '', operator = '', displayValue = ''
-let resultShown = false
+let resultShown = false, error = false
 const display = document.querySelector('.display')
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -76,6 +76,12 @@ function updateOperator(event) {
     }
 
     if (resultShown === true) {
+        if (error === true) {
+            clearData()
+            error = false
+            return
+        }
+
         firstNumber = display.textContent
         secondNumber = ''
         resultShown = false
@@ -117,6 +123,12 @@ function operate() {
     }
 
     const selectedFunc = operations[operator]
-    display.textContent = selectedFunc(+firstNumber, +secondNumber)
+    let result = selectedFunc(+firstNumber, +secondNumber)
+    if (result === Infinity) {
+        display.textContent = 'Nice try'
+        error = true
+    } else {
+        display.textContent = result
+    }
     resultShown = true
 }
