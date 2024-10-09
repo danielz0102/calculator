@@ -44,6 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
             displayValue = updateDisplay(e.key)
             updateNumbers()
         }
+
+        if (e.key === 'Backspace') {
+            popDisplay()
+        }
     })
 })
 
