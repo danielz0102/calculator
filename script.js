@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backspace.addEventListener('click', popDisplay)
 
     document.addEventListener('keydown', e => {
-        console.log(e.key)
         document.activeElement.blur()
 
         if (isNaN(e.key) === false || e.key === '.') {
