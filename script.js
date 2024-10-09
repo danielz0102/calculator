@@ -12,13 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     numbers.forEach(btn => {
         btn.addEventListener('click', e => {
-            displayValue = updateDisplay(e)
+            displayValue = updateDisplay(e.target.textContent)
             updateNumbers()
         })
     })
 
     operators.forEach(btn => {
-        btn.addEventListener('click', updateOperator)
+        btn.addEventListener('click', e => {
+            updateOperator(e.target.textContent)
+        })
     })
 
     equalBtn.addEventListener('click', () => {
@@ -34,6 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
     signBtn.addEventListener('click', changeSign)
 
     backspace.addEventListener('click', popDisplay)
+
+    document.addEventListener('keydown', e => {
+        console.log(e.key)
+
+        if (isNaN(e.key) === false || e.key === '.') {
+            displayValue = updateDisplay(e.key)
+            updateNumbers()
+        }
+    })
 })
 
 function popDisplay() {
@@ -57,7 +68,7 @@ function changeSign() {
     }
 }
 
-function updateDisplay(event) {
+function updateDisplay(value) {
     if (resultShown === true) {
         clearData()
         resultShown = false
@@ -67,7 +78,7 @@ function updateDisplay(event) {
         display.textContent = ''
     }
 
-    if (event.target.textContent === '.') {
+    if (value === '.') {
         if (display.textContent === '') {
             display.textContent = '0'
         } else if (display.textContent.includes('.')) {
@@ -75,15 +86,15 @@ function updateDisplay(event) {
         }
     }
 
-    return display.textContent += event.target.textContent
+    return display.textContent += value
 }
 
 function updateNumbers() {
     operator === '' ? firstNumber = displayValue : secondNumber = displayValue
 }
 
-function updateOperator(event) {
-    const operatorSelected = event.target.textContent
+function updateOperator(value) {
+    const operatorSelected = value
 
     if (operator !== '' && firstNumber !== '' && secondNumber !== '') {
         operate()
