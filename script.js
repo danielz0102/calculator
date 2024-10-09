@@ -45,8 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
             updateNumbers()
         }
 
-        if (e.key === 'Backspace') {
-            popDisplay()
+        const keyFunctions = {
+            'Backspace': popDisplay,
+            'Escape': clearData,
+            'Shift': changeSign,
+        }
+        const funcSelected = keyFunctions[e.key]
+        if (funcSelected) {
+            funcSelected()
         }
     })
 })
