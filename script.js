@@ -35,23 +35,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('keydown', e => {
         console.log(e.key)
+        document.activeElement.blur()
 
         if (isNaN(e.key) === false || e.key === '.') {
             displayValue = updateDisplay(e.key)
             updateNumbers()
         }
 
-        const keyFunctions = {
+        const operatorKey = ['-', '+', '/', '*']
+
+        const keyFunction = {
             'Backspace': popDisplay,
             'Escape': clearData,
             'Shift': changeSign,
             'Enter': operate,
-            '*': updateOperator,
-            '-': updateOperator,
-            '/': updateOperator,
-            '+': updateOperator,
         }
-        const selectedFunc = keyFunctions[e.key]
+
+        operatorKey.forEach(key => {
+            keyFunction[key] = updateOperator
+        })
+
+        if (operatorKey.includes(e.key)) {
+            const keyId = {
+                '+': 'plus',
+                '-': 'minus',
+                '*': 'multiply',
+                '/': 'divide',
+            }
+            document.querySelector(`#${keyId[e.key]}`).focus()
+        }
+
+        const selectedFunc = keyFunction[e.key]
         if (selectedFunc) {
             selectedFunc(e.key)
         }
