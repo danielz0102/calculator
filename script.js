@@ -23,11 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-    equalBtn.addEventListener('click', () => {
-        if (firstNumber !== '' && secondNumber !== '' && operator !== '') {
-            operate()
-        }
-    })
+    equalBtn.addEventListener('click', operate)
 
     clearBtn.addEventListener('click', () => {
         clearData()
@@ -49,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Backspace': popDisplay,
             'Escape': clearData,
             'Shift': changeSign,
+            'Enter': operate,
         }
         const funcSelected = keyFunctions[e.key]
         if (funcSelected) {
@@ -153,6 +150,10 @@ function divide(a, b) {
 }
 
 function operate() {
+    if (firstNumber === '' || operator === '' || secondNumber === '') {
+        return
+    }
+
     const operations = {
         '+': add,
         '-': subtract,
