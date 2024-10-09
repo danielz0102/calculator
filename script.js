@@ -46,10 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
             'Escape': clearData,
             'Shift': changeSign,
             'Enter': operate,
+            '*': updateOperator,
+            '-': updateOperator,
+            '/': updateOperator,
+            '+': updateOperator,
         }
-        const funcSelected = keyFunctions[e.key]
-        if (funcSelected) {
-            funcSelected()
+        const selectedFunc = keyFunctions[e.key]
+        if (selectedFunc) {
+            selectedFunc(e.key)
         }
     })
 })
@@ -101,7 +105,9 @@ function updateNumbers() {
 }
 
 function updateOperator(value) {
-    const operatorSelected = value
+    const operatorSelected = value === '*' ? 'x'
+    : value === '/' ? '÷'
+    : value
 
     if (operator !== '' && firstNumber !== '' && secondNumber !== '') {
         operate()
